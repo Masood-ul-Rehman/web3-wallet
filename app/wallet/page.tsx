@@ -4,7 +4,7 @@ import React from "react";
 const page = () => {
   const { userId } = auth();
 
-  return <div>page</div>;
+  return <div className="container">page</div>;
 };
 
 export default page;
