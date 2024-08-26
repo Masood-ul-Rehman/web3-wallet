@@ -1,11 +1,13 @@
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/prisma/db";
+import { NextResponse } from "next/server";
 
-async function GET(req: Request) {
+export async function GET(req: Request) {
   const { userId } = auth();
   if (!userId) {
-    return new Response("Unauthorized", { status: 401 });
+    return new NextResponse("Unauthorized", { status: 401 });
   }
+
   const user = await prisma.user.findUnique({
     where: {
       userId,
@@ -13,7 +15,7 @@ async function GET(req: Request) {
   });
 
   if (!user) {
-    return new Response("User not found", { status: 404 });
+    return new NextResponse("User not found", { status: 404 });
   }
 
   const wallets = await prisma.wallet.findMany({
@@ -22,10 +24,5 @@ async function GET(req: Request) {
     },
   });
 
-  return new Response(JSON.stringify(wallets), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return NextResponse.json(wallets, { status: 200 });
 }

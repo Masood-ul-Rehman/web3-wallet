@@ -20,13 +20,15 @@ const Header = () => {
     (theme === "system" &&
       window.matchMedia("(prefers-color-scheme: dark)").matches);
   return (
-    <div className="flex justify-between items-center container px-10 py-5">
-      <Image
-        src={`/logo${isDarkMode ? "-dark" : "-light"}.svg`}
-        alt="logo"
-        width={200}
-        height={50}
-      />
+    <div className="flex justify-between items-center md:container  ">
+      <div className="flex justify-start">
+        <Image
+          src={`/logo${isDarkMode ? "-dark" : "-light"}.svg`}
+          alt="logo"
+          width={200}
+          height={50}
+        />
+      </div>
       <div className="flex gap-8 items-center">
         <SignedOut>
           <SignInButton>
