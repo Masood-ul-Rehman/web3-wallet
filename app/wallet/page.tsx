@@ -1,14 +1,14 @@
-import { auth } from "@clerk/nextjs/server";
 import React from "react";
+import { auth } from "@clerk/nextjs/server";
+import Switcher from "./components/switcher";
 
-const page = () => {
+const Wallet = () => {
   const { userId } = auth();
-
   return (
-    <div className="container">
-      <h1>Wallet</h1>
+    <div className="container  mt-12 md:px-14">
+      <Switcher />
     </div>
   );
 };
 
-export default page;
+export default Wallet;
